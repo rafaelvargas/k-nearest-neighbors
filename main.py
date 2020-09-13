@@ -28,6 +28,10 @@ def normalize_values(data: np.array):
 if __name__ == '__main__':
     data, labels = read_dataset('data/diabetes.csv', 'Outcome')
     data = normalize_values(data)
-    classifier = KNNClassifier(number_of_neighbors = 3)
-    result = classifier.predict(data[1:], labels[1:], data[0])
-    print(result)
+
+    classifier = KNNClassifier(number_of_neighbors = 5)
+    cross_validator = KFoldCrossValidator(number_of_folds= 8)
+    cross_validator.validate(classifier, data, labels)
+
+    # result = classifier.predict(data[1:], labels[1:], data[0])
+    # print(result)

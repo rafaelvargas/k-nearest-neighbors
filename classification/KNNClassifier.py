@@ -22,7 +22,7 @@ class KNNClassifier:
                 if nearest_neighbors_distances[index] > distance:
                     nearest_neighbors_distances[index] = distance
                     nearest_neighbors_labels[index] = label
-        print(nearest_neighbors_distances, nearest_neighbors_labels)
+        # print(nearest_neighbors_distances, nearest_neighbors_labels)
         return self._compute_mode(nearest_neighbors_labels)
 
     def _check_train_dataset(self, train_data: np.array, train_labels: np.array):
