@@ -1,0 +1,54 @@
+% This file was created by tikzplotlib v0.9.4.
+\begin{tikzpicture}
+
+\definecolor{color0}{rgb}{0.12156862745098,0.466666666666667,0.705882352941177}
+\definecolor{color1}{rgb}{1,0.498039215686275,0.0549019607843137}
+
+\begin{axis}[
+height=6cm,
+legend cell align={left},
+legend style={fill opacity=0.8, draw opacity=1, text opacity=1, at={(0.97,0.03)}, anchor=south east, draw=white!80!black},
+tick align=outside,
+tick pos=left,
+title={10 folds and 5 neighbors},
+width=10.66cm,
+x grid style={white!69.0196078431373!black},
+xlabel={k},
+xmin=0.55, xmax=10.45,
+xtick style={color=black},
+xtick={1 ,2 ,3 ,4 ,5 ,6 ,7 ,8 ,9 ,10},
+y grid style={white!69.0196078431373!black},
+ymin=0, ymax=1,
+ytick style={color=black}
+]
+\addplot [semithick, color0]
+table {%
+1 0.714
+2 0.753
+3 0.753
+4 0.779
+5 0.779
+6 0.74
+7 0.766
+8 0.74
+9 0.688
+10 0.76
+};
+\addlegendentry{Accuracy}
+\addplot [semithick, color1]
+table {%
+1 0.542
+2 0.578
+3 0.627
+4 0.679
+5 0.721
+6 0.545
+7 0.609
+8 0.583
+9 0.556
+10 0.609
+};
+\addlegendentry{F1-score}
+\end{axis}
+
+\end{tikzpicture}
