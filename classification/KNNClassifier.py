@@ -8,7 +8,6 @@ class KNNClassifier:
 
     def predict(self, train_data: np.array, train_labels: np.array, test_data: np.array):
         self._check_train_dataset(train_data, train_labels)
-        train_data = self._normalize_values(train_data)
         nearest_neighbors_distances = []
         nearest_neighbors_labels = []
 
@@ -22,7 +21,6 @@ class KNNClassifier:
                 if nearest_neighbors_distances[index] > distance:
                     nearest_neighbors_distances[index] = distance
                     nearest_neighbors_labels[index] = label
-        # print(nearest_neighbors_distances, nearest_neighbors_labels)
         return self._compute_mode(nearest_neighbors_labels)
 
     def _check_train_dataset(self, train_data: np.array, train_labels: np.array):
@@ -32,15 +30,6 @@ class KNNClassifier:
             print(len(train_data), len(train_labels))
             raise ValueError('The number of labels should be equal to the number of data elements')
 
-    def _normalize_values(self, train_data: np.array):
-        data_transposed = np.transpose(train_data)
-        for feature_data in data_transposed:
-            min_value = np.min(feature_data)
-            max_value = np.max(feature_data)
-            feature_data -= min_value
-            feature_data /= (max_value - min_value)
-        return np.transpose(data_transposed)
-
     def _compute_euclidian_distance(self, a: np.array, b: np.array):
         return np.sqrt(np.sum(np.power(a - b, 2)))
 
@@ -49,6 +38,6 @@ class KNNClassifier:
         for n in nearest_neighbors_labels:
             try:
                 counting[n] += 1
-            except KeyError as e:
+            except KeyError:
                 counting[n] = 1
         return max(counting.keys(), key=(lambda key: counting[key]))
