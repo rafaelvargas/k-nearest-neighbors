@@ -42,6 +42,6 @@ if __name__ == '__main__':
     for kf in k_folds:
         for kn in k_neighbors:
             classifier = KNNClassifier(number_of_neighbors = kn)
-            cross_validator = KFoldCrossValidator(number_of_folds= kf)
+            cross_validator = KFoldCrossValidator(number_of_folds= kf, seed=42, verbose=True)
             results = cross_validator.validate(classifier, data, labels)
             write_results(f'results/{kf}_{kn}.csv', results, ['k', 'Accuracy', 'F1-score'])
